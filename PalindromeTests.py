@@ -21,12 +21,18 @@ class Tests(unittest.TestCase):
         self.assertEqual(palindrome("nurses run."), True, "The phrase 'nurses run.' is a palindrome")
         self.assertEqual(palindrome("Madam#"), True, "The word 'Madam' is a palindrome")
         self.assertEqual(palindrome("T_O_M_A_T_O"), False, "The word 'TOMATO' is not a palindrome")
-        self.assertEqual(palindrome("nurses!@#$:;>/,'run."), True, "The phrase is a palindrome disregarding the punctuation marks")
+        self.assertEqual(palindrome("nurses!@#$:;>/,'run."), True, "The phrase is a palindrome disregarding non-alphanumeric characters")
     
-    def test_user_input_number(self):
-        self.assertEqual(palindrome("10"), "Please enter a word or phrase")
+    def test_input_is_number(self):
+        self.assertEqual(palindrome("101"), True, "The number '101' is a palindrome")
+        self.assertEqual(palindrome("1_0_1"), True, "The number '101' is a palindrome disregarding the non-number characters")
+        self.assertEqual(palindrome("10"), False, "The number '10' is not a palindrome")
 
-    def test_user_input_characters(self):
+    def test_input_is_alphanumeric(self):
+        self.assertEqual(palindrome("Madam101"), False, "The string 'Madam101' is not a palindrome")
+        self.assertEqual(palindrome("101Madam101"), True, "The string '101Madam101' is a palindrome")
+
+    def test_input_is_characters(self):
         self.assertEqual(palindrome("###"), "Please enter a word or phrase")
         
 if __name__=="__main__":

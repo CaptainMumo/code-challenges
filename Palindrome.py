@@ -2,9 +2,12 @@ import string
 
 def palindrome(word):
     alphabet = string.ascii_lowercase
+    numbers = string.digits
+
     for x in word:
-        if x not in alphabet:
+        if x not in alphabet and x not in numbers:
             word = word.lower().replace(x,"")
+            
     if len(word) > 0:
         return word == word[::-1]
     else:
